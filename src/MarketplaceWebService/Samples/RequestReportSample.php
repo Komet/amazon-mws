@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
  *  PHP Version 5
  *
  *  @category    Amazon
@@ -9,18 +9,18 @@
  *  @license     http://aws.amazon.com/apache2.0  Apache License, Version 2.0
  *  @version     2009-01-01
  */
-/******************************************************************************* 
+/*******************************************************************************
 
  *  Marketplace Web Service PHP5 Library
  *  Generated: Thu May 07 13:07:36 PDT 2009
- * 
+ *
  */
 
 /**
  * Report  Sample
  */
 
-include_once ('.config.inc.php'); 
+// include_once ('.config.inc.php'); 
 
 /************************************************************************
 * Uncomment to configure the client instance. Configuration settings
@@ -60,18 +60,18 @@ $config = array (
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebService
- * 
- * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants 
- * are defined in the .config.inc.php located in the same 
+ *
+ * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
+ * are defined in the .config.inc.php located in the same
  * directory as this sample
  ***********************************************************************/
  $service = new MarketplaceWebService_Client(
-     AWS_ACCESS_KEY_ID, 
-     AWS_SECRET_ACCESS_KEY, 
+     AWS_ACCESS_KEY_ID,
+     AWS_SECRET_ACCESS_KEY,
      $config,
      APPLICATION_NAME,
      APPLICATION_VERSION);
- 
+
 /************************************************************************
  * Uncomment to try out Mock Service that simulates MarketplaceWebService
  * responses without calling MarketplaceWebService service.
@@ -85,16 +85,16 @@ $config = array (
  // $service = new MarketplaceWebService_Mock();
 
 /************************************************************************
- * Setup request parameters and uncomment invoke to try out 
+ * Setup request parameters and uncomment invoke to try out
  * sample for Report Action
  ***********************************************************************/
-// Constructing the MarketplaceId array which will be passed in as the the MarketplaceIdList 
+// Constructing the MarketplaceId array which will be passed in as the the MarketplaceIdList
 // parameter to the RequestReportRequest object.
 $marketplaceIdArray = array("Id" => array('<Marketplace_Id_1>','<Marketplace_Id_2>'));
 
  // @TODO: set request. Action can be passed as MarketplaceWebService_Model_ReportRequest
  // object or array of parameters
- 
+
 // $parameters = array (
 //   'Merchant' => MERCHANT_ID,
 //   'MarketplaceIdList' => $marketplaceIdArray,
@@ -102,9 +102,9 @@ $marketplaceIdArray = array("Id" => array('<Marketplace_Id_1>','<Marketplace_Id_
 //   'ReportOptions' => 'ShowSalesChannel=true',
 //   'MWSAuthToken' => '<MWS Auth Token>', // Optional
 // );
- 
+
 // $request = new MarketplaceWebService_Model_RequestReportRequest($parameters);
- 
+
 // $request = new MarketplaceWebService_Model_RequestReportRequest();
 // $request->setMarketplaceIdList($marketplaceIdArray);
 // $request->setMerchant(MERCHANT_ID);
@@ -113,75 +113,75 @@ $marketplaceIdArray = array("Id" => array('<Marketplace_Id_1>','<Marketplace_Id_
 
 // Using ReportOptions
 // $request->setReportOptions('ShowSalesChannel=true');
- 
+
  invokeRequestReport($service, $request);
- 
+
 /**
   * Get Report List Action Sample
   * returns a list of reports; by default the most recent ten reports,
   * regardless of their acknowledgement status
-  *   
+  *
   * @param MarketplaceWebService_Interface $service instance of MarketplaceWebService_Interface
   * @param mixed $request MarketplaceWebService_Model_GetReportList or array of parameters
   */
-  function invokeRequestReport(MarketplaceWebService_Interface $service, $request) 
+  function invokeRequestReport(MarketplaceWebService_Interface $service, $request)
   {
       try {
               $response = $service->requestReport($request);
-              
+
                 echo ("Service Response\n");
                 echo ("=============================================================================\n");
 
                 echo("        RequestReportResponse\n");
-                if ($response->isSetRequestReportResult()) { 
+                if ($response->isSetRequestReportResult()) {
                     echo("            RequestReportResult\n");
                     $requestReportResult = $response->getRequestReportResult();
-                    
+
                     if ($requestReportResult->isSetReportRequestInfo()) {
-                        
+
                         $reportRequestInfo = $requestReportResult->getReportRequestInfo();
                           echo("                ReportRequestInfo\n");
-                          if ($reportRequestInfo->isSetReportRequestId()) 
+                          if ($reportRequestInfo->isSetReportRequestId())
                           {
                               echo("                    ReportRequestId\n");
                               echo("                        " . $reportRequestInfo->getReportRequestId() . "\n");
                           }
-                          if ($reportRequestInfo->isSetReportType()) 
+                          if ($reportRequestInfo->isSetReportType())
                           {
                               echo("                    ReportType\n");
                               echo("                        " . $reportRequestInfo->getReportType() . "\n");
                           }
-                          if ($reportRequestInfo->isSetStartDate()) 
+                          if ($reportRequestInfo->isSetStartDate())
                           {
                               echo("                    StartDate\n");
                               echo("                        " . $reportRequestInfo->getStartDate()->format(DATE_FORMAT) . "\n");
                           }
-                          if ($reportRequestInfo->isSetEndDate()) 
+                          if ($reportRequestInfo->isSetEndDate())
                           {
                               echo("                    EndDate\n");
                               echo("                        " . $reportRequestInfo->getEndDate()->format(DATE_FORMAT) . "\n");
                           }
-                          if ($reportRequestInfo->isSetSubmittedDate()) 
+                          if ($reportRequestInfo->isSetSubmittedDate())
                           {
                               echo("                    SubmittedDate\n");
                               echo("                        " . $reportRequestInfo->getSubmittedDate()->format(DATE_FORMAT) . "\n");
                           }
-                          if ($reportRequestInfo->isSetReportProcessingStatus()) 
+                          if ($reportRequestInfo->isSetReportProcessingStatus())
                           {
                               echo("                    ReportProcessingStatus\n");
                               echo("                        " . $reportRequestInfo->getReportProcessingStatus() . "\n");
                           }
                       }
-                } 
-                if ($response->isSetResponseMetadata()) { 
+                }
+                if ($response->isSetResponseMetadata()) {
                     echo("            ResponseMetadata\n");
                     $responseMetadata = $response->getResponseMetadata();
-                    if ($responseMetadata->isSetRequestId()) 
+                    if ($responseMetadata->isSetRequestId())
                     {
                         echo("                RequestId\n");
                         echo("                    " . $responseMetadata->getRequestId() . "\n");
                     }
-                } 
+                }
 
                 echo("            ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
      } catch (MarketplaceWebService_Exception $ex) {
@@ -194,7 +194,5 @@ $marketplaceIdArray = array("Id" => array('<Marketplace_Id_1>','<Marketplace_Id_
          echo("ResponseHeaderMetadata: " . $ex->getResponseHeaderMetadata() . "\n");
      }
  }
- 
-?>
 
-                                                                                
+?>

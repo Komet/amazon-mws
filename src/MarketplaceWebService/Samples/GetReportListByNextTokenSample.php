@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
  *  PHP Version 5
  *
  *  @category    Amazon
@@ -9,18 +9,18 @@
  *  @license     http://aws.amazon.com/apache2.0  Apache License, Version 2.0
  *  @version     2009-01-01
  */
-/******************************************************************************* 
+/*******************************************************************************
 
  *  Marketplace Web Service PHP5 Library
  *  Generated: Thu May 07 13:07:36 PDT 2009
- * 
+ *
  */
 
 /**
  * Get Report List By Next Token  Sample
  */
 
-include_once ('.config.inc.php'); 
+// include_once ('.config.inc.php'); 
 
 /************************************************************************
 * Uncomment to configure the client instance. Configuration settings
@@ -60,18 +60,18 @@ $config = array (
 
 /************************************************************************
  * Instantiate Implementation of MarketplaceWebService
- * 
- * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants 
- * are defined in the .config.inc.php located in the same 
+ *
+ * AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY constants
+ * are defined in the .config.inc.php located in the same
  * directory as this sample
  ***********************************************************************/
  $service = new MarketplaceWebService_Client(
-     AWS_ACCESS_KEY_ID, 
-     AWS_SECRET_ACCESS_KEY, 
+     AWS_ACCESS_KEY_ID,
+     AWS_SECRET_ACCESS_KEY,
      $config,
      APPLICATION_NAME,
      APPLICATION_VERSION);
- 
+
 /************************************************************************
  * Uncomment to try out Mock Service that simulates MarketplaceWebService
  * responses without calling MarketplaceWebService service.
@@ -85,12 +85,12 @@ $config = array (
  // $service = new MarketplaceWebService_Mock();
 
 /************************************************************************
- * Setup request parameters and uncomment invoke to try out 
+ * Setup request parameters and uncomment invoke to try out
  * sample for Get Report List By Next Token Action
  ***********************************************************************/
  // @TODO: set request. Action can be passed as MarketplaceWebService_Model_GetReportListByNextTokenRequest
  // object or array of parameters
- 
+
 //$nextToken = '<NextToken returned by GetReportList>';
 
 //$parameters = array (
@@ -108,32 +108,32 @@ $config = array (
 //
 //invokeGetReportListByNextToken($service, $request);
 
-                                                                                        
+
 /**
   * Get Report List By Next Token Action Sample
   * retrieve the next batch of list items and if there are more items to retrieve
-  *   
+  *
   * @param MarketplaceWebService_Interface $service instance of MarketplaceWebService_Interface
   * @param mixed $request MarketplaceWebService_Model_GetReportListByNextToken or array of parameters
   */
-  function invokeGetReportListByNextToken(MarketplaceWebService_Interface $service, $request) 
+  function invokeGetReportListByNextToken(MarketplaceWebService_Interface $service, $request)
   {
       try {
               $response = $service->getReportListByNextToken($request);
-              
+
                 echo ("Service Response\n");
                 echo ("=============================================================================\n");
 
                 echo("        GetReportListByNextTokenResponse\n");
-                if ($response->isSetGetReportListByNextTokenResult()) { 
+                if ($response->isSetGetReportListByNextTokenResult()) {
                     echo("            GetReportListByNextTokenResult\n");
                     $getReportListByNextTokenResult = $response->getGetReportListByNextTokenResult();
-                    if ($getReportListByNextTokenResult->isSetNextToken()) 
+                    if ($getReportListByNextTokenResult->isSetNextToken())
                     {
                         echo("                NextToken\n");
                         echo("                    " . $getReportListByNextTokenResult->getNextToken() . "\n");
                     }
-                    if ($getReportListByNextTokenResult->isSetHasNext()) 
+                    if ($getReportListByNextTokenResult->isSetHasNext())
                     {
                         echo("                HasNext\n");
                         echo("                    " . $getReportListByNextTokenResult->getHasNext() . "\n");
@@ -141,47 +141,47 @@ $config = array (
                     $reportInfoList = $getReportListByNextTokenResult->getReportInfo();
                     foreach ($reportInfoList as $reportInfo) {
                         echo("                ReportInfo\n");
-                        if ($reportInfo->isSetReportId()) 
+                        if ($reportInfo->isSetReportId())
                         {
                             echo("                    ReportId\n");
                             echo("                        " . $reportInfo->getReportId() . "\n");
                         }
-                        if ($reportInfo->isSetReportType()) 
+                        if ($reportInfo->isSetReportType())
                         {
                             echo("                    ReportType\n");
                             echo("                        " . $reportInfo->getReportType() . "\n");
                         }
-                        if ($reportInfo->isSetReportRequestId()) 
+                        if ($reportInfo->isSetReportRequestId())
                         {
                             echo("                    ReportRequestId\n");
                             echo("                        " . $reportInfo->getReportRequestId() . "\n");
                         }
-                        if ($reportInfo->isSetAvailableDate()) 
+                        if ($reportInfo->isSetAvailableDate())
                         {
                             echo("                    AvailableDate\n");
                             echo("                        " . $reportInfo->getAvailableDate()->format(DATE_FORMAT) . "\n");
                         }
-                        if ($reportInfo->isSetAcknowledged()) 
+                        if ($reportInfo->isSetAcknowledged())
                         {
                             echo("                    Acknowledged\n");
                             echo("                        " . $reportInfo->getAcknowledged() . "\n");
                         }
-                        if ($reportInfo->isSetAcknowledgedDate()) 
+                        if ($reportInfo->isSetAcknowledgedDate())
                         {
                             echo("                    AcknowledgedDate\n");
                             echo("                        " . $reportInfo->getAcknowledgedDate()->format(DATE_FORMAT) . "\n");
                         }
                     }
-                } 
-                if ($response->isSetResponseMetadata()) { 
+                }
+                if ($response->isSetResponseMetadata()) {
                     echo("            ResponseMetadata\n");
                     $responseMetadata = $response->getResponseMetadata();
-                    if ($responseMetadata->isSetRequestId()) 
+                    if ($responseMetadata->isSetRequestId())
                     {
                         echo("                RequestId\n");
                         echo("                    " . $responseMetadata->getRequestId() . "\n");
                     }
-                } 
+                }
 
                 echo("            ResponseHeaderMetadata: " . $response->getResponseHeaderMetadata() . "\n");
      } catch (MarketplaceWebService_Exception $ex) {
