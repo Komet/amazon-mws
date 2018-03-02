@@ -1,5 +1,5 @@
 {
-	"name": "tremendus/amazon-mws",
+	"name": "Komet/amazon-mws",
 	"description": "Amazon MWS API Composer package - Orders, Inventory and Products",
 	"license": "Apache-2.0",
 	"keywords": [
@@ -8,7 +8,7 @@
 		"api",
 		"products"
 	],
-	"homepage": "https://github.com/tremendus/amazon-mws",
+	"homepage": "https://github.com/komet/amazon-mws",
 	"authors": [
 		{
 			"name": "tremendus",
